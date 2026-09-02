@@ -1,3 +1,5 @@
+import { asset } from "@/lib/asset";
+
 export type Lang = "en" | "id";
 
 export const PROFILE = {
@@ -7,7 +9,7 @@ export const PROFILE = {
   linkedin: "https://linkedin.com/in/mochammaddzikritaufik/",
   linkedinShort: "/in/mochammaddzikritaufik",
   location: "Abu Dhabi, UAE",
-  cv: "/CV_Mochammad_Dzikri_Taufik.pdf",
+  cv: asset("/CV_Mochammad_Dzikri_Taufik.pdf"),
   title: "Aircraft Engine Maintenance Specialist",
 };
 
@@ -103,7 +105,7 @@ export const COPY = {
     competencies: "KOMPETENSI",
     languages: "BAHASA",
     total: "TOTAL",
-    contactTitle: "Mari berdiskusi soal mesin dan perbaaikan berkelanjutan.",
+    contactTitle: "Mari berdiskusi soal mesin dan perbaikan berkelanjutan.",
     contactSub:
       "Terbuka untuk peran Lead Technician, Continuous Improvement, dan operasi MRO di tingkat internasional. Email adalah cara tercepat untuk menghubungi saya.",
     basedIn: "BERDOMISILI DI",
@@ -133,10 +135,10 @@ export type Logo = {
 };
 
 export const LOGOS = {
-  sanad: { src: "/sanad.png", width: 800, height: 312, display: 36 },
-  zeroone: { src: "/zeroonegroup.jpg", width: 200, height: 200, display: 52 },
-  gmf: { src: "/gmf.png", width: 241, height: 51, display: 30 },
-  imcp: { src: "/IMCP.png", width: 350, height: 165, display: 44 },
+  sanad: { src: asset("/sanad.png"), width: 800, height: 312, display: 36 },
+  zeroone: { src: asset("/zeroonegroup.jpg"), width: 200, height: 200, display: 52 },
+  gmf: { src: asset("/gmf.png"), width: 241, height: 51, display: 30 },
+  imcp: { src: asset("/IMCP.png"), width: 350, height: 165, display: 44 },
 } satisfies Record<string, Logo>;
 
 export type Job = {

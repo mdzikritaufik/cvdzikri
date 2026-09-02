@@ -8,6 +8,7 @@ import { Reveal } from "@/components/reveal";
 import { SplitText } from "@/components/split-text";
 import { TransitionLink } from "@/components/transition";
 import { PROFILE } from "@/data/content";
+import { asset } from "@/lib/asset";
 import { useLang } from "@/lib/i18n";
 import { EASE_OUT } from "@/lib/motion";
 
@@ -61,7 +62,7 @@ export function AboutView() {
             transition={{ duration: 1.4, ease: EASE_OUT, delay: 0.25 }}
           >
             <Image
-              src="/photo.jpg"
+              src={asset("/photo.jpg")}
               alt={PROFILE.name}
               fill
               priority

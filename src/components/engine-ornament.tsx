@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { asset } from "@/lib/asset";
 import { EASE_OUT } from "@/lib/motion";
 
 /**
@@ -19,10 +20,10 @@ export function EngineOrnament({ className = "" }: { className?: string }) {
       transition={{ duration: 1.6, ease: EASE_OUT, delay: 0.2 }}
     >
       <Image
-        src="/engine-frontview.png"
+        src={asset("/engine-frontview.webp")}
         alt=""
-        width={3000}
-        height={2755}
+        width={1400}
+        height={1286}
         sizes="(min-width: 768px) 560px, 320px"
         priority
         className="h-auto w-full opacity-[0.18] grayscale contrast-125 mix-blend-multiply md:opacity-[0.15]"

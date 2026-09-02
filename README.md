@@ -39,6 +39,30 @@ public/
   CV_Mochammad_Dzikri_Taufik.pdf
 ```
 
+## Deploying
+
+The site is a static export deployed to GitHub Pages by
+`.github/workflows/deploy.yml` on every push to `main`. Pages serves it from a
+sub-path, so the workflow builds with `NEXT_PUBLIC_BASE_PATH=/cvdzikri`.
+
+`next/link` applies that prefix on its own, but `next/image` and plain `<a>`
+links do not, so every reference to a file in `public/` goes through
+`asset()` in `src/lib/asset.ts`. Add new assets the same way or they will
+404 once deployed.
+
+A static export has no server to optimize images, so files in `public/` are
+served byte for byte. Keep them small at rest.
+
+To build the export locally exactly as CI does:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/cvdzikri npm run build
+```
+
+The result lands in `out/`. Because of the sub-path, opening `out/index.html`
+directly will not resolve assets. Serve it from a parent directory with the
+export placed in a folder named `cvdzikri`.
+
 ## Editing content
 
 Everything textual lives in `src/data/content.ts`. Add a project by appending
