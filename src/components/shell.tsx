@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV, PROFILE, type Lang } from "@/data/content";
 import { useLang } from "@/lib/i18n";
+import { samePath } from "@/lib/path";
 import { EASE_IN_OUT, EASE_OUT } from "@/lib/motion";
 import { TransitionLink, useTransition } from "./transition";
 
@@ -30,9 +31,11 @@ export function Shell() {
     };
   }, [menuOpen]);
 
+  // navigate() decides what a given href means: a real route change raises the
+  // curtain, and re-picking the current page just returns to the top.
   const go = (href: string, label: string) => {
     setMenuOpen(false);
-    if (href !== pathname) navigate(href, label);
+    navigate(href, label);
   };
 
   return (
@@ -98,7 +101,7 @@ export function Shell() {
             <nav className="rule-t flex flex-col">
               {NAV.map((item, i) => {
                 const label = t[item.key];
-                const active = pathname === item.href;
+                const active = samePath(pathname, item.href);
                 return (
                   <motion.button
                     key={item.href}
