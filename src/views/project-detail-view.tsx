@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/reveal";
 import { SplitText } from "@/components/split-text";
@@ -103,6 +104,41 @@ export function ProjectDetailView({ slug }: { slug: string }) {
           ) : null}
         </Reveal>
       </section>
+
+      {current.docs?.length ? (
+        <section className="rule-b px-5 py-10 md:px-8">
+          <Reveal className="label mb-6 text-ink-700">{t.documentation}</Reveal>
+          <div className="grid gap-8 md:grid-cols-2">
+            {current.docs.map((doc, i) => (
+              <Reveal key={doc.src} delay={i * 0.12}>
+                <figure className="m-0 max-w-[504px]">
+                  {doc.kind === "linkedin" ? (
+                    <iframe
+                      src={doc.src}
+                      title={doc.caption}
+                      loading="lazy"
+                      allowFullScreen
+                      className="block h-[399px] w-full border-0"
+                    />
+                  ) : (
+                    <Image
+                      src={doc.src}
+                      alt={doc.alt ?? doc.caption}
+                      width={doc.width}
+                      height={doc.height}
+                      sizes="(min-width: 768px) 504px, 100vw"
+                      className="block h-auto w-full bg-surface"
+                    />
+                  )}
+                  <figcaption className="mt-3 text-[13px] leading-[1.5] text-ink-700">
+                    {doc.caption}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-5 py-10 md:px-8">
         <Reveal className="label mb-5 text-ink-700">{t.otherProjects}</Reveal>

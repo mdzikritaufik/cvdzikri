@@ -47,7 +47,8 @@ export const COPY = {
     impact: "IMPACT",
     headline: "HEADLINE RESULT",
     openDemo: "OPEN STAGING DEMO",
-    demoNote: "Preview access — user ID 12345, password 12345678.",
+    demoNote: "Sign-in required. Accounts are issued by an Admin — there is no public sign-up.",
+    documentation: "DOCUMENTATION",
     otherProjects: "OTHER PROJECTS",
     credTitle: "Education, certifications and competencies.",
     education: "EDUCATION",
@@ -95,7 +96,8 @@ export const COPY = {
     impact: "DAMPAK",
     headline: "HASIL UTAMA",
     openDemo: "BUKA DEMO STAGING",
-    demoNote: "Akses pratinjau — user ID 12345, kata sandi 12345678.",
+    demoNote: "Perlu masuk. Akun diterbitkan oleh Admin — tidak ada pendaftaran publik.",
+    documentation: "DOKUMENTASI",
     otherProjects: "PROYEK LAINNYA",
     credTitle: "Pendidikan, sertifikasi, dan kompetensi.",
     education: "PENDIDIKAN",
@@ -301,7 +303,28 @@ export type Project = {
   detail: string;
   impact: string;
   link: string;
+  /** Photos and LinkedIn posts shown in the "Documentation" section, in order. */
+  docs?: DocItem[];
 };
+
+export type DocItem =
+  | {
+      kind: "linkedin";
+      /** Embed URL from LinkedIn's "Embed this post" — the iframe `src`. */
+      src: string;
+      caption: string;
+    }
+  | {
+      kind: "image";
+      /** File in `public/`, routed through `asset()`. Keep it compressed (WebP). */
+      src: string;
+      /** Intrinsic pixel size, so the layout reserves space before the image loads. */
+      width: number;
+      height: number;
+      caption: string;
+      /** Defaults to the caption. */
+      alt?: string;
+    };
 
 export const PROJECT_SLUGS = [
   "sigmas",
@@ -325,7 +348,7 @@ export const PROJECTS: Record<Lang, Project[]> = {
         "Serves around 40 technicians across engine stripping, inspection and Material GATE 01 stages, with barcode-based automated part identification, guided inspection workflows, standardized disposition recording, and a real-time analytics dashboard.",
       impact:
         "Target: eliminated manual process errors; improved material traceability and part identification accuracy by approximately 90 percent; enhanced real-time visibility for shop floor scheduling and resource allocation.",
-      link: "https://sigmas-git-master-dzikri-squarepants-projects.vercel.app/login",
+      link: "https://sigmas-git-master-dzikri-squarepants-projects.vercel.app/",
     },
     {
       slug: "cohas-board",
@@ -340,6 +363,27 @@ export const PROJECTS: Record<Lang, Project[]> = {
       impact:
         "90% of mechanics reported improved ease of use; reduced installation errors and rework; shortened the installation learning curve for new technicians; improved first-pass quality.",
       link: "",
+      docs: [
+        {
+          kind: "linkedin",
+          src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7094844042781331457?compact=1",
+          caption: "COHAS BOARD development — first phase",
+        },
+        {
+          kind: "linkedin",
+          src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7224369266031017984?compact=1",
+          caption: "COHAS BOARD development — final phase",
+        },
+        // Photos go in the same list. Drop the file in `public/` and record its
+        // real pixel size:
+        // {
+        //   kind: "image",
+        //   src: asset("/cohas-board-1.webp"),
+        //   width: 1600,
+        //   height: 1200,
+        //   caption: "The finished board on the LPT module line",
+        // },
+      ],
     },
     {
       slug: "consumable-material",
@@ -412,6 +456,18 @@ export const PROJECTS: Record<Lang, Project[]> = {
       impact:
         "90% mekanik melaporkan kemudahan penggunaan yang lebih baik; menurunkan kesalahan instalasi dan pekerjaan ulang; memperpendek kurva belajar instalasi bagi teknisi baru; meningkatkan kualitas first-pass.",
       link: "",
+      docs: [
+        {
+          kind: "linkedin",
+          src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7094844042781331457?compact=1",
+          caption: "Pengembangan COHAS BOARD fase pertama",
+        },
+        {
+          kind: "linkedin",
+          src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7224369266031017984?compact=1",
+          caption: "Pengembangan COHAS BOARD fase terakhir",
+        },
+      ],
     },
     {
       slug: "consumable-material",
