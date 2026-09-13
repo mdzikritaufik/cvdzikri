@@ -54,14 +54,6 @@ export function Shell() {
         <div className="flex items-center gap-3 md:gap-5">
           <LangToggle lang={lang} setLang={setLang} />
 
-          <a
-            href={PROFILE.cv}
-            download
-            className="btn btn-outline hidden px-4 py-[11px] text-[11px] sm:inline-flex"
-          >
-            {t.cvShort}
-          </a>
-
           <button
             type="button"
             aria-expanded={menuOpen}

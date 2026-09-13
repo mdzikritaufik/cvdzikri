@@ -15,7 +15,6 @@ export const PROFILE = {
 
 export const COPY = {
   en: {
-    cvShort: "CV",
     cvLong: "DOWNLOAD FULL CV (PDF)",
     menu: "MENU",
     close: "CLOSE",
@@ -64,7 +63,6 @@ export const COPY = {
     gpa: "GPA",
   },
   id: {
-    cvShort: "CV",
     cvLong: "UNDUH CV LENGKAP (PDF)",
     menu: "MENU",
     close: "TUTUP",
